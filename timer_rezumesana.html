@@ -1,0 +1,304 @@
+<html>
+
+<head>
+    <meta name="resource-type" content="document">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="https://rawgit.com/gdaunton/Semantic-UI/range-slider-build/dist/semantic.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://rawgit.com/gdaunton/Semantic-UI/range-slider-build/dist/semantic.js">
+    </script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" type="text/javascript"></script>
+    <!-- Semantic UI -->
+    <script language="javascript">
+        var punkti = 0;
+        var nedela = 1;
+
+        $(document).ready(function () {
+            $('.ui.rating')
+                .rating({
+                    maxRating: 1,
+                    onRate: value => {
+                        if (value === 1) {
+                            punkti++;
+                        } else if (value === 0) {
+                            punkti--;
+                        }
+                        $('#kopa').html(punkti);
+                    }
+                });
+
+            // Dropdowns ar nedēļu
+            $(".ui.dropdown").dropdown({
+                onChange: function (val) {
+                    nedela = val;
+                }
+            });
+        });
+    </script>
+
+    <style>
+        button {
+            background-color: #f5f5f5;
+            border: 1px solid #dedede;
+            border-top: 1px solid #eee;
+            border-left: 1px solid #eee;
+
+            line-height: 130%;
+            text-decoration: none;
+            font-weight: bold;
+            color: #565656;
+            cursor: pointer;
+
+            width: auto;
+            overflow: visible;
+            padding: 4px 10px 3px 7px;
+        }
+
+        button[type] {
+            padding: 5px 10px 5px 7px;
+            /* Firefox */
+            line-height: 17px;
+            /* Safari */
+        }
+
+        *:first-child+html button[type] {
+            padding: 4px 10px 3px 7px;
+            /* IE7 */
+        }
+
+        button.positive {
+            background-color: #E6EFC2;
+            border: 1px solid #C6D880;
+            color: #529214;
+        }
+
+        button.negative {
+            background: #fbe3e4;
+            border: 1px solid #fbc2c4;
+            color: #d12f19;
+        }
+
+        button.regular {
+            background-color: #dff4ff;
+            border: 1px solid #c2e1ef;
+            color: #336699;
+        }
+        [contenteditable=true]:empty:before {
+            content: attr(placeholder);
+            display: block;
+            /* For Firefox */
+        }
+    </style>
+<style>
+    /* Vārdu ievade */
+    .vards {
+        width: 85%;
+        margin: 14px 0 30px;
+        padding: 10px 0px;
+        font-family: Montserrat, sans-serif;
+        font-size: 16px;
+        line-height: 25px;
+        font-weight: inherit;
+        color: #9fa1a8;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid #ebebeb;
+        border-radius: 0;
+        outline: 0;
+        -webkit-appearance: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        -webkit-transition: border-color .2s ease-in-out;
+        -moz-transition: border-color .2s ease-in-out;
+        transition: border-color .2s ease-in-out;
+    }
+
+    /* input vardu divs */
+    .vardi {
+        margin-bottom: 25px;
+    }
+
+    .punktuLapa h2,
+    h3 {
+        text-align: center;
+        font-family: Montserrat, sans-serif;
+    }
+
+    .vardi input,
+    textarea {
+        margin: 10px !important;
+    }
+
+    .vardi .teal, .green {
+        float: right;
+        margin-top: -45px!important;
+        margin-right: 10px!important;
+    }
+
+    .vardi p {
+        text-align: right;
+        margin-right: 10%;
+        font-size: 12px
+    }
+
+    .positive.saglabat {
+        font-size: 15pt;
+        margin-top: 32px;
+        text-align: center;
+    }
+
+    /* The container */
+    .container {
+        display: block;
+        position: relative;
+        margin-bottom: 18px;
+        font-size: 15px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .punktuLapa {
+        width: 100%;
+        padding: 2px 10px;
+    }
+
+    .rating {
+        float: right;
+        padding-right: 10%;
+    }
+
+    #balst,
+    #rezum {
+        width: 90%;
+    }
+    [contenteditable=true]:empty:before {
+            content: attr(placeholder);
+            display: block;
+            /* For Firefox */
+        }
+</style>
+    <script type="text/javascript">
+        preventScrolling = function (event) {
+            // Prevent scrolling on this element
+            event.preventDefault();
+        }
+    </script>
+</head>
+
+<body style="margin:0;">
+    <br>
+    <div ontouchmove="preventScrolling(event);">
+        <div class="punktuLapa" id="rezultats">
+            <center>
+                <h2>Punktu lapa</h2>
+                <h4>Rezumēšana</h4>
+                <select class="ui dropdown">
+                    <option value="">Nedēļa</option>
+                    <option value="1">1. nedēļa</option>
+                    <option value="2">2. nedēļa</option>
+                    <option value="3">3. nedēļa</option>
+                </select>
+                <br><br>
+                <p>Ierakstiet vārdus</p>
+            </center>
+            <div class="vardi">
+                <input autocomplete="off" type="text" id="las-vards" name="lasit-vards" value="" size="15" class="vards"
+                    aria-required="true" aria-invalid="false" placeholder="Vārds" style="font-size: 18px;">
+                <div class="ui teal label">Lasītājs</div>
+                <br>
+                <input autocomplete="off" type="text" id="tre-vards" name="tren-vards" value="" size="15" class="vards"
+                    aria-required="true" aria-invalid="false" placeholder="Vārds" style="font-size: 18px;">
+                <div class="ui green label">Treneris</div>
+                <br>
+                <br>
+                <div class="ui grey label">Balstvārdi</div>
+                <div contenteditable="true" onkeyup="textAreaAdjust(this)" style="overflow:hidden" autocomplete="off" type="text"
+                    id="balst" name="tren-vards" value="" size="15" class="vards" aria-required="true"
+                    aria-invalid="false" placeholder="3 - 4 balstvārdi" style="font-size: 18px;"></div>
+                <br>
+                <label id="pirmais" class="container">
+                    Nosauc un ieraksta balstvārdus
+                    <div class="ui massive star rating" data-max-rating="1"></div>
+                </label>
+                <div class="ui grey label">Rezumējums</div>
+                <div contenteditable="true" onkeyup="textAreaAdjust(this)" style="overflow:hidden" autocomplete="off" type="text"
+                    id="rezum" name="tren-vards" value="" size="15" class="vards" aria-required="true"
+                    aria-invalid="false" placeholder="Rezumējums, līdz 10 vārdiem." style="font-size: 16px;"></div>
+                <p><span id="display_count">0</span> vārdi</p>
+                <label id="pirmais" class="container"><span style="display: inline-block;width: 70%">
+                        Izveido un uzraksta rezumējumu par izlasīto fragmentu
+                    </span>
+                    <div class="ui massive star rating" data-max-rating="1">
+                    </div>
+                </label>
+            </div>
+            <h2>Punkti kopā: <span id="kopa">0</span></h2>
+        </div>
+        <center>
+            <button class="positive saglabat" onclick="printDiv('rezultats')">Saglabāt</button>
+        </center>
+    </div>
+
+</body>
+<footer>
+    
+    <script>
+        // TextArea pielāgojas tekstam
+        function textAreaAdjust(o) {
+            o.style.height = "1px";
+            o.style.height = (5 + o.scrollHeight) + "px";
+        }
+        // Saglabā attēlu
+        function printDiv(divName) {
+            html2canvas(document.querySelector('#' + divName)).then(canvas => {
+                //document.body.appendChild(canvas);
+                saveAs(canvas.toDataURL(), 'Punktu lapa - rezumēšana (ned. ' + nedela + ').png');
+            });
+
+            function saveAs(uri, filename) {
+                var link = document.createElement('a');
+                if (typeof link.download === 'string') {
+                    link.href = uri;
+                    link.download = filename;
+
+                    //Firefox requires the link to be in the body
+                    document.body.appendChild(link);
+
+                    //simulate click
+                    link.click();
+
+                    //remove the link when done
+                    document.body.removeChild(link);
+                } else {
+                    window.open(uri);
+                }
+            }
+        }
+
+        // Vārdu skaitīšana
+        $(document).ready(function () {
+            var wordCounts = {};
+            $("#rezum").keyup(function () {
+                var kkas = $("#rezum").html();
+                var matches = kkas.match(/\b/g);
+                wordCounts[this.id] = matches ? matches.length / 2 : 0;
+                var finalCount = 0;
+                $.each(wordCounts, function (k, v) {
+                    finalCount += v;
+                });
+                $('#display_count').html(finalCount);
+            }).keyup();
+        });
+        $("#balst, #rezum").on('paste',function(e) {
+            e.preventDefault();
+            return false;
+        })
+    </script>
+</footer>
+
+</html>
